@@ -7,8 +7,9 @@ function App() {
   return (
     <>
       <Hearder />
-      {/* <h1 className="bg-yellow-400 h-10">Welcome Dummy Shopping </h1> */}
-      <Outlet />
+        {/* <div className="pt-32 bg-white"> */}
+          <Outlet />
+        {/* </div> */}
       <Footer />
     </>
   )
