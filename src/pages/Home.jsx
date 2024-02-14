@@ -8,6 +8,7 @@ function Home() {
   return (
     <>
 
+    <div className=''>
     <div className="pt-32 bg-white">
       <h1 className="text-center text-2xl font-bold text-gray-800 mb-10">
         {loading ? "Loading Products..." : (error ? "Failed to fetch products. Please try again later." : "All Products")}
@@ -23,6 +24,7 @@ function Home() {
         }
       </div>
     </section>
+    </div>
 
     </>
   )
