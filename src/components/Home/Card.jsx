@@ -1,5 +1,5 @@
 import React from 'react'
-import {addToCart, removeFromCart} from '../store/cartSlice'
+import {addToCart, removeFromCart} from '../../store/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 function Card({product}) {
