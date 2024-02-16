@@ -1,7 +1,7 @@
 import React from 'react'
 import CartCard from './CartCard'
 import { useSelector } from 'react-redux'
-import subTotal from '../utils/subTotal'
+import subTotal from '../../utils/subTotal'
 
 function CartComp() {
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import {updateQty, removeFromCart} from '../store/cartSlice'
+import {updateQty, removeFromCart} from '../../store/cartSlice'
 
 function CartCard({product}) {
 

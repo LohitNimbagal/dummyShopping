@@ -1,5 +1,5 @@
 import React from 'react'
-import CartComp from '../components/CartComp'
+import CartComp from '../components/Cart/CartComp'
 
 function Cart() {
   return (
