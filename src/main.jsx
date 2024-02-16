@@ -9,6 +9,9 @@ import Cart from './pages/Cart.jsx'
 import { Provider } from 'react-redux'
 import {store} from './store/store.js'
 import Signup from './pages/Signup.jsx'
+import Protected from './components/Protected.jsx'
+import { ToastContainer } from 'react-toastify'
+  import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
   {
@@ -17,19 +20,35 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: (
+          <Protected authentication>
+            <Home />
+          </Protected>
+        )
       },
       {
         path: "/cart",
-        element: <Cart />
+        element: (
+          <Protected authentication >
+            <Cart />
+          </Protected>
+        )
       },
       {
         path: "/login",
-        element: <Login />
+        element: (
+          <Protected authentication = {false}>
+            <Login />
+          </Protected>
+        )
       },
       {
         path: "/signup",
-        element: <Signup />
+        element: (
+          <Protected authentication = {false}>
+            <Signup />
+          </Protected>
+        )
       },
     ]
   },
@@ -37,6 +56,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <ToastContainer />
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>

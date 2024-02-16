@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
+import {logout} from '../store/authSlice'
 
-function Hearder() {
+function Hearder({loggedin}) {
   const navigate = useNavigate()
   const cartItems = useSelector(state => state.cart)
-  const [loggedin, setLoggedIn] = useState(false)
 
   const [isOpen, setIsOpen] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setIsOpen(false)
@@ -28,8 +29,6 @@ function Hearder() {
 
           <div className="mt-2 sm:mt-0 sm:flex md:order-2">
 
-            <button type="button" className=" rounde mr-4 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg" onClick={() => navigate("/cart")}>Cart ({cartItems.length})</button>
-
             {/* <!-- Menu Button --> */}
             <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden" aria-controls="navbar-sticky" aria-expanded="false" onClick={() => setIsOpen(!isOpen)}>
               <span className="sr-only">Open main menu</span>
@@ -40,7 +39,22 @@ function Hearder() {
                 {/* <!-- Login Button --> */}
                 <button type="button" className="rounde mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg" onClick={() => navigate("/login")}>Log In</button>
 
+                {/* <!-- Signup Button --> */}
                 <button type="button" className="rounde mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg" onClick={() => navigate("/signup")}>Sign Up</button>
+              </div>
+
+              <div className={`${loggedin ? 'flex' : 'hidden'} gap-3`}>
+                {/* <!-- Cart Button --> */}
+
+                <button type="button" className=" rounde mr-4 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg" onClick={() => navigate("/cart")}>Cart ({cartItems.length})</button>
+
+                {/* <!-- Logout Button --> */}
+                <button type="button" className="rounde mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg" onClick={() => {
+
+                  dispatch(logout())
+                  // navigate("/login")
+                }
+                }>Log Out</button>
               </div>
 
           </div>
