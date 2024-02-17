@@ -72,10 +72,10 @@ function Hearder({ loggedin }) {
                     </li>
 
                     <li className='mt-2 flex gap-5 items-center justify-center'>
-                      <button type="button" className=" rounde border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg" onClick={() => navigate("/cart")}>Cart ({cartItems.length})</button>
+                      <button type="button" className=" rounde border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:hidden rounded-lg" onClick={() => navigate("/cart")}>Cart ({cartItems.length})</button>
 
                       {/* <!-- Logout Button --> */}
-                      <button type="button" className="rounde bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg" onClick={() => {
+                      <button type="button" className="rounde bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:hidden rounded-lg" onClick={() => {
 
                         dispatch(logout())
                         // navigate("/login")
