@@ -62,15 +62,27 @@ function Hearder({ loggedin }) {
           <div className={`${isOpen ? 'flex' : 'hidden'} w-full items-center justify-between md:flex md:order-1 md:w-auto`} id="navbar-sticky">
             {loggedin
               ? (
-                <ul className={`w-full mt-4 flex flex-col gap-2 rounded-lg border border-gray-100 bg-gray-50 p-4 md:flex md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium`}>
-                  <li>
-                    <NavLink to="/" className={({ isActive }) => `block rounded bg-transperent py-2 pl-3 pr-4 text-gray-700 md:bg-transparent md:p-0 ${isActive ? "bg-blue-700 text-white md:text-blue-700": "md:text-gray-700"}`} aria-current="page">Home </NavLink>
-                  </li>
+                  <ul className={`w-full mt-4 flex flex-col gap-3 rounded-lg border border-gray-100 bg-gray-50 p-4 md:flex md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium`}>
+                    <li>
+                      <NavLink to="/" className={({ isActive }) => `block rounded bg-transperent py-2 pl-3 pr-4 text-gray-700 md:bg-transparent md:p-0 ${isActive ? "bg-blue-700 text-white md:text-blue-700" : "md:text-gray-700"}`} aria-current="page">Home </NavLink>
+                    </li>
 
-                  <li>
-                    <NavLink to="/cart" className={({ isActive }) => `block rounded bg-transperent py-2 pl-3 pr-4 text-gray-700 md:bg-transparent md:p-0 ${isActive ? "bg-blue-700 text-white md:text-blue-700" : "md:text-gray-700"}`} aria-current="page">About </NavLink>
-                  </li>
-                </ul>
+                    <li>
+                      <NavLink to="/cart" className={({ isActive }) => `block rounded bg-transperent py-2 pl-3 pr-4 text-gray-700 md:bg-transparent md:p-0 ${isActive ? "bg-blue-700 text-white md:text-blue-700" : "md:text-gray-700"}`} aria-current="page">About </NavLink>
+                    </li>
+
+                    <li className='mt-2 flex gap-5 items-center justify-center'>
+                      <button type="button" className=" rounde border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg" onClick={() => navigate("/cart")}>Cart ({cartItems.length})</button>
+
+                      {/* <!-- Logout Button --> */}
+                      <button type="button" className="rounde bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg" onClick={() => {
+
+                        dispatch(logout())
+                        // navigate("/login")
+                      }
+                      }>Log Out</button>
+                    </li>
+                  </ul>
               ) : (
                 <div className='w-full flex p-5 justify-center gap-3'>
                   {/* <!-- Login Button --> */}
@@ -79,7 +91,6 @@ function Hearder({ loggedin }) {
                   <button type="button" className="rounde mr-3 bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:hidden  md:mr-0  rounded-lg" onClick={() => navigate("/signup")}>Sign Up</button>
                 </div>
               )
-
             }
           </div>
 
