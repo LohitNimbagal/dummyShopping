@@ -25,7 +25,6 @@ function Login() {
       .then(res => res.json())
       .then(res => {
         dispatch(login(res))
-        navigate("/")
       })
   }
 

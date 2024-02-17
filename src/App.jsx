@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import Hearder from "./components/Hearder"
 import Footer from "./components/Footer"
 import { useEffect, useState } from "react"
@@ -8,6 +8,7 @@ function App() {
 
   const [loggedin, setLoggedIn] = useState(false)
   const userData = useSelector(state => state.auth.userData)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!userData) {
@@ -15,7 +16,6 @@ function App() {
       return
     };
 
-    setLoggedIn(false)
     fetch('https://dummyjson.com/auth/me', {
       method: 'GET',
       headers: {
@@ -23,8 +23,12 @@ function App() {
       },
     })
     .then(res => res.json())
-    .then(setLoggedIn(!loggedin));
-  }, [userData])
+    .then(res => {
+      setLoggedIn(true)
+      navigate("/")
+    });
+
+  }, [userData, navigate])
 
   return (
     <>
