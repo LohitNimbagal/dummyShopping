@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import useFetch from '../hooks/useFetch'
 import Card from '../components/Home/Card'
-import FilterPannel from '../components/Home/FilterPannel';
+import FilterButton from '../components/Home/FilterButton';
+import SortButton from '../components/Home/SortButton'
 import SearchBar from '../components/Home/SearchBar';
 
 
@@ -47,7 +48,7 @@ function Home() {
 
   return (
     <>
-    <div className='bg-gray-100'>
+    <div className='bg-gray-100 min-h-screen'>
     
       <section className="py-10 pt-32 flex-1">
         {/* <h1 className="text-center text-2xl font-bold text-gray-800 mb-10">
@@ -56,7 +57,10 @@ function Home() {
 
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-        <FilterPannel priceRange={priceRange} setPriceFunction={setPriceRange} />
+        <div className='flex px-5 lg:px-56'>
+          <FilterButton priceRange={priceRange} setPriceFunction={setPriceRange} />
+          {/* <SortButton /> */}
+        </div>
 
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {

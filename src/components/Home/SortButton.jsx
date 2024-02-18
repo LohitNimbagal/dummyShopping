@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const FilterPannel = (props) => {
+const SortButton = (props) => {
 
   const handelOnChange = (e) => (
     props.setPriceFunction(e.target.value)
@@ -10,8 +10,8 @@ const FilterPannel = (props) => {
 
 
   return (
-    <div className='px-5 lg:px-56'>
-      <button className='rounded m-1 hidden border border-gray-700 py-1 px-4 text-center text-sm font-medium text-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 md:inline-block rounded-lg"' onClick={e => setFilterPannel(!filterPannel)}>Filter</button>
+    <div className=''>
+      <button className='rounded m-1 hidden border border-gray-700 py-1 px-4 text-center text-sm font-medium text-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 md:inline-block rounded-lg"' onClick={e => setFilterPannel(!filterPannel)}>Sort</button>
 
       {/* Price Range */}
 
@@ -27,4 +27,4 @@ const FilterPannel = (props) => {
   )
 }
 
-export default FilterPannel
+export default SortButton

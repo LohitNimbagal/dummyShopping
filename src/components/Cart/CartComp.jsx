@@ -10,7 +10,7 @@ function CartComp() {
 
     return (
         <>
-        <div className="h-full bg-gray-100 pt-32">
+        <div className="h-screen bg-gray-100 pt-32">
             <h1 className="mb-10 text-center text-2xl font-bold">Cart Products</h1>
             {
                 cartProducts.length > 0 ? 

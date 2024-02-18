@@ -12,6 +12,7 @@ import Signup from './pages/Signup.jsx'
 import Protected from './components/Protected.jsx'
 import { ToastContainer } from 'react-toastify'
   import 'react-toastify/dist/ReactToastify.css';
+import About from './pages/About.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,14 @@ const router = createBrowserRouter([
         element: (
           <Protected authentication>
             <Home />
+          </Protected>
+        )
+      },
+      {
+        path: "/about",
+        element: (
+          <Protected authentication = {false}>
+            <About />
           </Protected>
         )
       },
