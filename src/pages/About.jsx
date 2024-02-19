@@ -2,7 +2,7 @@ import React from 'react'
 
 function About() {
   return (
-    <div className='bg-gray-100 h-screen py-10 pt-32 flex-1 px-5 lg:px-56'>
+    <div className='bg-gray-100 min-h-screen py-10 pt-32 flex-1 px-5 lg:px-56'>
       <section className='space-y-2'>
         <h1 className='text-2xl text-blue-700 font-bold'>About GooShopping</h1>
         <p className='ml-2'>Welcome to GooShopping, your ultimate destination for online shopping convenience and quality. We're dedicated to providing you with a seamless shopping experience, offering a diverse selection of products at competitive prices.</p>
