@@ -10,9 +10,10 @@ import { Provider } from 'react-redux'
 import {store} from './store/store.js'
 import Signup from './pages/Signup.jsx'
 import Protected from './components/Protected.jsx'
-import { ToastContainer } from 'react-toastify'
-  import 'react-toastify/dist/ReactToastify.css';
 import About from './pages/About.jsx'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import PageNotFound from './pages/PageNotFound.jsx'
 
 const router = createBrowserRouter([
   {
@@ -61,13 +62,31 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: "*",
+    element: (
+      <PageNotFound />
+    )
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ToastContainer />
     <Provider store={store}>
       <RouterProvider router={router} />
+      <ToastContainer 
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition: Bounce
+      />
     </Provider>
   </React.StrictMode>,
 )

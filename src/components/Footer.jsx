@@ -10,7 +10,7 @@ function Footer() {
                         <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6">
                             <span>Copy right © 2024 by GooShopping team </span>
 
-                            <span>Disclaimer this is a Dummy Website</span>
+                            <Link to="/about">About Us</Link>
                         </div>
                         <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
                             <Link rel="noopener noreferrer" href="#" title="GitHub" className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 hover:bg-blue-600 duration-150 text-gray-50">

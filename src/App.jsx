@@ -2,41 +2,41 @@ import { Outlet, useNavigate } from "react-router-dom"
 import Hearder from "./components/Hearder"
 import Footer from "./components/Footer"
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { login, logout } from "./store/authSlice"
+import axios from "axios"
+import { Loading } from "./components/UI/Loading"
+
 
 function App() {
 
-  const [loggedin, setLoggedIn] = useState(false)
-  const userData = useSelector(state => state.auth.userData)
+  const authToken = localStorage.getItem("authToken");
+  const [loading, setLoading] = useState(true)
+  const loggedin = useSelector(state => state.auth.status)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!userData) {
-      setLoggedIn(false)
-      return
-    };
+    axios
+      .get('https://dummyjson.com/auth/me', { headers: { 'Authorization': `Bearer ${authToken}` } })
+      .then(response => {
+        dispatch(login(response.data))
+        navigate("/")
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(logout())
+      })
+      .finally(() => setLoading(false))
+  }, [authToken])
 
-    fetch('https://dummyjson.com/auth/me', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${userData.token}`,
-      },
-    })
-    .then(res => res.json())
-    .then(res => {
-      setLoggedIn(true)
-      navigate("/")
-    });
-
-  }, [userData, navigate])
-
-  return (
+  return !loading ? (
     <>
-      <Hearder loggedin={loggedin}/>
+      <Hearder loggedin={loggedin} />
       <Outlet />
       <Footer />
     </>
-  )
+  ) : <Loading />
 }
 
 export default App
