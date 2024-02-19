@@ -38,15 +38,15 @@ function Hearder({ loggedin }) {
                       </div>
                   </button>
 
-                  <button type="button" className="bg-blue-700 py-2 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg" onClick={() => {
+                  <button type="button" className="bg-blue-700 py-2 px-6 text-center text-xs md:text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg" onClick={() => {
                     dispatch(logout())
                   }}>Log Out</button>
                 </div>
               ) : (
                 <div className='w-full flex items-center gap-3 rounded-lg text-sm md:space-x-8 md:border-0 md:bg-white md:font-medium'>
-                  <button type="button" className="bg-blue-700 py-2 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg" onClick={() => navigate("/login")}>Log In</button>
+                  <button type="button" className="bg-blue-700 py-2 px-6 text-center text-xs md:text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg" onClick={() => navigate("/login")}>Log In</button>
 
-                  <button type="button" className="bg-blue-700 py-2 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  rounded-lg" onClick={() => navigate("/signup")}>Sign Up</button>
+                  <button type="button" className="bg-blue-700 py-2 px-6 text-center text-xs md:text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  rounded-lg" onClick={() => navigate("/signup")}>Sign Up</button>
                 </div>
               )}
           </div>
