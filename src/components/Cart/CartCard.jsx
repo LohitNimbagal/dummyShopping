@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {updateQty, removeFromCart} from '../../store/cartSlice'
 
 function CartCard({product}) {
 
     const dispatch = useDispatch()
     const [quantity, setQuantity] = useState(product.quantity)
+    const currency = useSelector(state => state.currency)
 
     useEffect(() => {
         dispatch(updateQty({id: product.item.id, quantity: quantity })) 
@@ -27,7 +28,7 @@ function CartCard({product}) {
                     <span className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50" onClick={() => setQuantity(preValue => preValue >= 5 ? preValue : preValue + 1)}> + </span>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <p className="text-sm">$ {product.item.price}</p>
+                    <p className="text-sm">{product.item.price * Math.floor(currency.countryRate)} {currency.countryCode.toUpperCase()}</p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500" 
                     onClick={() => {
                         dispatch(removeFromCart(product.item))

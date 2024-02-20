@@ -39,7 +39,7 @@ function Hearder({ loggedin }) {
                   </button>
 
                   <button type="button" className="bg-blue-700 py-2 px-6 text-center text-xs md:text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-lg" onClick={() => {
-                    localStorage.clear()
+                    localStorage.clear("authToken")
                     dispatch(logout())
                   }}>Log Out</button>
                 </div>

@@ -6,11 +6,12 @@ import subTotal from '../../utils/subTotal'
 function CartComp() {
 
     const cartProducts = useSelector(state => state.cart)
+    const currency = useSelector(state => state.currency)
     const sTotal = subTotal()
 
     return (
         <>
-        <div className="min-h-screen bg-gray-100 pt-32">
+        <div className="min-h-screen bg-gray-100 pt-32 pb-3">
             <h1 className="mb-10 text-center text-2xl font-bold">Cart Products</h1>
             {
                 cartProducts.length > 0 ? 
@@ -26,17 +27,17 @@ function CartComp() {
             <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
                 <div className="mb-2 flex justify-between">
                 <p className="text-gray-700">Subtotal</p>
-                <p className="text-gray-700">$ {sTotal}</p>
+                <p className="text-gray-700">{sTotal} {currency.countryCode.toUpperCase()}</p>
                 </div>
                 <div className="flex justify-between">
                 <p className="text-gray-700">Shipping</p>
-                <p className="text-gray-700">$ {cartProducts.lenght > 0 ? "0" : "4.99"}</p>
+                <p className="text-gray-700">{cartProducts.lenght > 0 ? "0" : 4.99  * Math.floor(currency.countryRate)} {currency.countryCode.toUpperCase()}</p>
                 </div>
                 <hr className="my-4" />
                 <div className="flex justify-between">
                 <p className="text-lg font-bold">Total</p>
                 <div className="">
-                    <p className="mb-1 text-lg font-bold">$ {sTotal + 4.99} USD</p>
+                    <p className="mb-1 text-lg font-bold">{sTotal + 4.99 * Math.floor(currency.countryRate)} {currency.countryCode.toUpperCase()}</p>
                     <p className="text-sm text-gray-700">including GST</p>
                 </div>
                 </div>

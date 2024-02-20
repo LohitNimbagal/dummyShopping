@@ -6,6 +6,7 @@ function Card({product}) {
 
   const dispatch = useDispatch()
   const cartProducts = useSelector(state => state.cart)
+  const currency = useSelector(state => state.currency)
 
   const handelClick = () => {
     if (cartProducts.some(pro => pro.item.id === product.id)){
@@ -27,7 +28,7 @@ function Card({product}) {
           <p className="mt-1 text-sm text-slate-400">{product.brand}</p>
 
           <div className="mt-3 flex items-end justify-between">
-              <p className="text-lg font-bold text-blue-500">${product.price}</p>
+              <p className="text-lg font-bold text-blue-500">{product.price * Math.floor(currency.countryRate)} {currency.countryCode.toUpperCase()}</p>
 
             <div className="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600 hover:cursor-pointer" onClick={() => handelClick()}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-4 w-4">
