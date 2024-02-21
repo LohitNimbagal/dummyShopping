@@ -1,10 +1,19 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setCurrencyData } from '../store/currencySlice'
 
 function currencyConvert() {
   const [currencyCode, setCurrencyCode] = useState("inr")
   const [currency, setCurrency] = useState(null)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (currency) {
+      dispatch(setCurrencyData(currency))
+    }
+  }, [currency])
 
   useEffect(() => {
     (() => {
@@ -20,7 +29,6 @@ function currencyConvert() {
       }
 
       function GetAddress(lat, lng) {
-
         axios
           .get(`https://api.opencagedata.com/geocode/v1/json?key=9a3e90e6b0b04583bf95abf76101db35&q=${lat}%2C${lng}&pretty=1`)
           .then(response => setCurrencyCode(response.data.results[0].annotations.currency.iso_code.toLowerCase()))

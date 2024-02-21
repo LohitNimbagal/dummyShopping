@@ -7,7 +7,7 @@ import { login, logout } from "./store/authSlice"
 import axios from "axios"
 import { Loading } from "./components/UI/Loading"
 import currencyConvert from "./utils/currencyConvert"
-import {setCurrency} from "./store/currencySlice"
+// import {setCurrencyData} from "./store/currencySlice"
 
 
 function App() {
@@ -19,10 +19,6 @@ function App() {
   const dispatch = useDispatch()
 
   const currency = currencyConvert()
-
-  if (currency) {
-    dispatch(setCurrency(currency))
-  }
 
   useEffect(() => {
     axios

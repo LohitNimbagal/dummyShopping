@@ -31,13 +31,13 @@ function CartComp() {
                 </div>
                 <div className="flex justify-between">
                 <p className="text-gray-700">Shipping</p>
-                <p className="text-gray-700">{cartProducts.lenght > 0 ? "0" : 4.99  * Math.floor(currency.countryRate)} {currency.countryCode.toUpperCase()}</p>
+                <p className="text-gray-700">{Intl.NumberFormat(currency.countryCode.toUpperCase()).format(cartProducts.lenght > 0 ? "0" : 4.99  * Math.floor(currency.countryRate))} {currency.countryCode.toUpperCase()}</p>
                 </div>
                 <hr className="my-4" />
                 <div className="flex justify-between">
                 <p className="text-lg font-bold">Total</p>
                 <div className="">
-                    <p className="mb-1 text-lg font-bold">{sTotal + 4.99 * Math.floor(currency.countryRate)} {currency.countryCode.toUpperCase()}</p>
+                    <p className="mb-1 text-lg font-bold">{Intl.NumberFormat(currency.countryCode.toUpperCase()).format(sTotal + 4.99 * Math.floor(currency.countryRate))} {currency.countryCode.toUpperCase()}</p>
                     <p className="text-sm text-gray-700">including GST</p>
                 </div>
                 </div>
