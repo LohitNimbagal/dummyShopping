@@ -1,8 +1,8 @@
-# E-commerce Web Application Project: gooShopping 🚀
+# E-commerce Web Application Project: GooShopping 🚀
 
-Welcome to gooShopping, my latest endeavor in the world of E-commerce Web Development! 🌐💼
+Welcome to GooShopping, my latest endeavor in the world of E-commerce Web Development! 🌐💼
 
-I'm thrilled to introduce this innovative project and share the journey of its creation. Here's why gooShopping stands out and the valuable lessons learned along the way:
+I'm thrilled to introduce this innovative project and share the journey of its creation. Here's why GooShopping stands out and the valuable lessons learned along the way:
 
 ## Key Features:
 
