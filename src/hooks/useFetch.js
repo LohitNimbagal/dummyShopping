@@ -2,15 +2,16 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 
-function useFetch() {
+function useFetch(url) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
  
     useEffect(() => {
         setLoading(true);
         axios
-            .get('https://dummyjson.com/products')
+            .get(url)
             .then((response) => {
                 setData(response.data);
             })

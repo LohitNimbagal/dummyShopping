@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import Home from './pages/Home.jsx'
-import Login from './pages/Login.jsx'
+import "react-toastify/dist/ReactToastify.css";
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Cart from './pages/Cart.jsx'
 import { Provider } from 'react-redux'
-import {store} from './store/store.js'
-import Signup from './pages/Signup.jsx'
+import { store } from './store/store.js'
 import Protected from './components/Protected.jsx'
-import About from './pages/About.jsx'
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import PageNotFound from './pages/PageNotFound.jsx'
+import { Loading } from './components/UI/Loading.jsx'
+
+const Home = React.lazy(() => import('./pages/Home'));
+const About = React.lazy(() => import('./pages/About.jsx'));
+const Cart = React.lazy(() => import('./pages/Cart.jsx'));
+const Product = React.lazy(() => import('./pages/Product.jsx'))
+const Login = React.lazy(() => import('./pages/Login.jsx'));
+const Signup = React.lazy(() => import('./pages/Signup.jsx'));
+const PageNotFound = React.lazy(() => import('./pages/PageNotFound.jsx'));
 
 const router = createBrowserRouter([
   {
@@ -31,10 +34,28 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <Protected authentication = {false}>
+          <Protected authentication={false}>
             <About />
           </Protected>
         )
+      },
+      {
+        path: "/product",
+        element: (
+          <Protected authentication>
+            <Product />
+          </Protected>
+        ),
+        children: [
+          {
+            path: ':id',
+            element: (
+              <Protected authentication>
+                <Product />
+              </Protected>
+            )
+          }
+        ]
       },
       {
         path: "/cart",
@@ -47,7 +68,7 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: (
-          <Protected authentication = {false}>
+          <Protected authentication={false}>
             <Login />
           </Protected>
         )
@@ -55,7 +76,7 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: (
-          <Protected authentication = {false}>
+          <Protected authentication={false}>
             <Signup />
           </Protected>
         )
@@ -73,20 +94,22 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
-      <ToastContainer 
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition: Bounce
-      />
+      <Suspense fallback={<Loading />}>
+        <RouterProvider router={router} />
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition:Bounce
+        />
+      </Suspense>
     </Provider>
   </React.StrictMode>,
 )

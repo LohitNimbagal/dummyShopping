@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import useFetch from '../hooks/useFetch'
-import Card from '../components/Home/Card'
+// import Card from '../components/Home/Card'
 import FilterButton from '../components/Home/FilterButton';
 import SortButton from '../components/Home/SortButton'
 import SearchBar from '../components/Home/SearchBar';
 import { Loading } from '../components/UI/Loading';
+import ErrorBoundary from "../components/ErrorBoundary";
+import { lazy } from 'react';
 
 
 function Home() {
   
-  const {data, loading, error} = useFetch()
-
+  const url = 'https://dummyjson.com/products'
+  const {data, loading, error} = useFetch(url)
   const [filteredPro, setFilteredPro] = useState()
   const [priceRange, setPriceRange] = useState("2000")
   const [searchTerm, setSearchTerm] = useState("")
+  const Card = lazy(() => import('../components/Home/Card'))
   const [sortBy, setSortBy] = useState("High to Low") 
 
   useEffect(() => {
@@ -48,27 +51,11 @@ function Home() {
     }
   }, [data, priceRange, searchTerm])
 
-  // useEffect(() => {
-  //   // if (filteredPro && sortBy === "Low to High") {
-  //   //   const newA = filteredPro
-  //   //   setFilteredPro(newA.sort((a,b) => {return a.price - b.price}))
-  //   // } 
-  //   if (filteredPro && sortBy === "High to Low") {
-  //     const newA = filteredPro
-  //     setFilteredPro(newA.sort((a,b) => {return a.price + b.price}))
-  //   }
-  // }, [data, sortBy])
-
 
   return (
     <>
     <div className='bg-gray-100 min-h-screen'>
-        {/* <h1 className="text-center text-2xl font-bold text-gray-800 mb-10">
-          // "Loading Products..." : 
-          // (error ? "Failed to fetch products. Please try again later." : "All Products")
-          }
-        </h1> */}
-    
+
       <section className="py-10 pt-32 flex-1">
         {loading ? (
           <Loading />
@@ -81,14 +68,17 @@ function Home() {
             <FilterButton priceRange={priceRange} setPriceFunction={setPriceRange} />
             {/* <SortButton /> */}
           </div>
-
+          
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <Suspense fallback={<Loading />}>
             {
               filteredPro?.map((product) => (
                 <Card product={product} key={product.id} />
               ))
             }
+            </Suspense>
           </div>
+
         </div> 
         }
       </section>

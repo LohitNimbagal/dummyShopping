@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {updateQty, removeFromCart} from '../../store/cartSlice'
+import { useNavigate } from 'react-router-dom';
 
 function CartCard({product}) {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [quantity, setQuantity] = useState(product.quantity)
     const currency = useSelector(state => state.currency)
 
@@ -12,8 +14,13 @@ function CartCard({product}) {
         dispatch(updateQty({id: product.item.id, quantity: quantity })) 
     }, [quantity])
 
+    const hadelCardClick = () => {
+        console.log(product);
+        navigate(`/product/${product.item.id}`)
+      }
+
   return (
-        <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
+        <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start" onClick={hadelCardClick}>
                 <img src={product.item.images[0]} alt={product.item.title} className='size-36 object-scale-down' />
                 <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                 <div className="mt-5 sm:mt-0">
