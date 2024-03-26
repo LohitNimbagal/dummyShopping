@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { login, logout } from "./store/authSlice"
 import axios from "axios"
-import { Loading } from "./components/UI/Loading"
+import { Loading } from "./components/ui/Loading"
 import currencyConvert from "./utils/currencyConvert"
 // import {setCurrencyData} from "./store/currencySlice"
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { Loading } from './UI/Loading';
+import { Loading } from './ui/Loading';
 
 function Protected({ children, authentication = true }) {
 
