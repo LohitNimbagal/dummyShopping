@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {addToCart, removeFromCart} from '../store/cartSlice'
 import { data } from 'autoprefixer';
-import { Loading } from './UI/Loading';
+import { Loading } from './ui/Loading';
 
 
 function ProductPageComp({ product }) {
