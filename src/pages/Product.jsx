@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import ProductPageComp from '../components/ProductPageComp'
 import { useParams } from 'react-router-dom'
 import useFetch from "../hooks/useFetch"
 import { lazy, Suspense } from 'react'
