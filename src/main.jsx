@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import "react-toastify/dist/ReactToastify.css";
@@ -8,15 +8,7 @@ import { Provider } from 'react-redux'
 import { store } from './store/store.js'
 import Protected from './components/Protected.jsx'
 import { ToastContainer } from "react-toastify";
-import { Loading } from './components/Loading.jsx'
-
-const Home = React.lazy(() => import('./pages/Home'));
-const About = React.lazy(() => import('./pages/About.jsx'));
-const Cart = React.lazy(() => import('./pages/Cart.jsx'));
-const Product = React.lazy(() => import('./pages/Product.jsx'))
-const Login = React.lazy(() => import('./pages/Login.jsx'));
-const Signup = React.lazy(() => import('./pages/Signup.jsx'));
-const PageNotFound = React.lazy(() => import('./pages/PageNotFound.jsx'));
+import { Home, About, Cart, Login, Signup, PageNotFound, Product } from './pages/index.js'
 
 const router = createBrowserRouter([
   {
@@ -94,7 +86,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <Suspense fallback={<Loading />}>
         <RouterProvider router={router} />
         <ToastContainer
           position="top-right"
@@ -109,7 +100,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           theme="light"
           transition:Bounce
         />
-      </Suspense>
     </Provider>
   </React.StrictMode>,
 )
