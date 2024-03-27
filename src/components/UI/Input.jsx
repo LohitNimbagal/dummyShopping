@@ -1,4 +1,4 @@
-import React, { useId } from 'react'
+import React from 'react'
 
 const Input = React.forwardRef(function Input({
     label,
@@ -6,15 +6,15 @@ const Input = React.forwardRef(function Input({
     className = "",
     ...props },
     ref) {
-    const id = useId()
+    // const id = useId()
     return (
         <div className='w-full'>
-            {label && (
+            {/* {label && (
                 <label htmlFor={id}
                     className='inline-block mb-1 pl-1'>
                     {label}
                 </label>
-            )}
+            )} */}
             <input
                 className={`px-3 py-1 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 w-full ${className}`}
                 type={type}
