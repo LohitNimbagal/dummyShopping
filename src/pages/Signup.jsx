@@ -59,6 +59,7 @@ function Signup() {
             </svg>
             <Input
               placeholder="Username"
+              type="text"
               {...register("name", { required: true })}
             />
           </div>
@@ -71,6 +72,7 @@ function Signup() {
             </svg>
             <Input
               placeholder="Email"
+              type="email"
               {...register("email", { required: true })}
             />
           </div>
@@ -82,7 +84,8 @@ function Signup() {
                 clipRule="evenodd" />
             </svg>
             <Input
-              placeholder="Password" type='password'
+              placeholder="Password" 
+              type='password'
               {...register("password", { required: true })}
             />
           </div>

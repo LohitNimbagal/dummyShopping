@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Input = React.forwardRef(function Input({
-    label,
+    // label,
     type = 'text',
     className = "",
     ...props },
