@@ -4,16 +4,17 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { logout } from '../store/authSlice'
 import authService from '../appwrite/auth'
 
-function Hearder({ loggedin }) {
+function Hearder() {
 
   const navigate = useNavigate()
-  const cartItems = useSelector(state => state.cart)
   const dispatch = useDispatch()
+  const cartItems = useSelector(state => state.cart)
+  const loggedin = useSelector(state => state.auth.status)
+
 
   const handleLogout = () => {
     authService.logout().then(() => {
       dispatch(logout())
-      navigate('/login')
     })
   }
 

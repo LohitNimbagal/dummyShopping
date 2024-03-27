@@ -14,7 +14,6 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(e.target.username.value, e.target.email.value, e.target.password.value);
     setError("")
     try {
       const userData = await authService.createAccount(e.target.username.value, e.target.email.value, e.target.password.value)
@@ -47,7 +46,7 @@ function Signup() {
       <div className="flex md:w-1/2 justify-center py-10 items-center bg-white">
         <form className="bg-white" onSubmit={e => handleSubmit(e)}>
           <h1 className="text-gray-800 font-bold text-2xl mb-1">Hello Welcome!</h1>
-          <p className="text-sm font-normal text-gray-600 mb-7"></p>
+
 
           <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none"

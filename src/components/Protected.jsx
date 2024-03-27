@@ -12,6 +12,8 @@ function Protected({ children, authentication = true }) {
     useEffect(() => {
         if (authentication && authStatus !== authentication) {
             navigate("/login")
+        } if (!authentication && authStatus !== authentication) {
+            navigate("/")
         }
         setLoading(false)
 
