@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { login } from '../store/authSlice'
 import authService from '../appwrite/auth'
-import Input from '../components/ui/Input.jsx'
+import Input from '../components/ui/Input'
 
 
 function Signup() {
