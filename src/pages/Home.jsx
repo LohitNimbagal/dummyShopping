@@ -4,7 +4,7 @@ import useFetch from '../hooks/useFetch'
 import FilterButton from '../components/Home/FilterButton';
 import SortButton from '../components/Home/SortButton'
 import SearchBar from '../components/Home/SearchBar';
-import { Loading } from '../components/ui/Loading';
+import { Loading } from '../components/Loading';
 import ErrorBoundary from "../components/ErrorBoundary";
 import { lazy } from 'react';
 

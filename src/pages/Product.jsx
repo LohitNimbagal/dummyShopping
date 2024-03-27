@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from "../hooks/useFetch"
 import { lazy, Suspense } from 'react'
-import { Loading } from '../components/ui/Loading'
+import { Loading } from '../components/Loading'
 import { useDispatch, useSelector } from 'react-redux'
 import {addToCart, removeFromCart} from '../store/cartSlice'
 

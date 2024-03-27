@@ -7,8 +7,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './store/store.js'
 import Protected from './components/Protected.jsx'
-import { ToastContainer, toast } from "react-toastify";
-import { Loading } from './components/ui/Loading'
+import { ToastContainer } from "react-toastify";
+import { Loading } from './components/Loading.jsx'
 
 const Home = React.lazy(() => import('./pages/Home'));
 const About = React.lazy(() => import('./pages/About.jsx'));
