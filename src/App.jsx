@@ -7,6 +7,7 @@ import { login, logout } from "./store/authSlice"
 import axios from "axios"
 import { Loading } from "./components/Loading"
 import currencyConvert from "./utils/currencyConvert"
+import authService from './appwrite/auth'
 // import {setCurrencyData} from "./store/currencySlice"
 
 
@@ -21,18 +22,14 @@ function App() {
   const currency = currencyConvert()
 
   useEffect(() => {
-    axios
-      .get('https://dummyjson.com/auth/me', { headers: { 'Authorization': `Bearer ${authToken}` } })
-      .then(response => {
-        dispatch(login(response.data))
-        navigate("/")
+    authService
+      .getCurrentUser()
+      .then((userData) => {
+        if (userData) dispatch(login({ userData }));
+        else dispatch(logout());
       })
-      .catch(error => {
-        console.log(error);
-        dispatch(logout())
-      })
-      .finally(() => setLoading(false))
-  }, [authToken])
+      .finally(() => setLoading(false));
+  }, [dispatch]);
 
   return !loading ? (
     <>
