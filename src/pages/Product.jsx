@@ -4,7 +4,6 @@ import useFetch from "../hooks/useFetch"
 import { lazy, Suspense } from 'react'
 import { Loading } from '../components/Loading'
 import { useDispatch, useSelector } from 'react-redux'
-import {addToCart, removeFromCart} from '../store/cartSlice'
 
 import axios from 'axios'
 
@@ -14,7 +13,7 @@ function ProductPage() {
   const [product, setProduct] = useState(undefined)
   const dispatch = useDispatch()
   const currency = useSelector(state => state.currency)
-  const cartProducts = useSelector(state => state.cart)
+  const cartProducts = useSelector(state => state.cartThunk.cartProducts)
   const url = `https://dummyjson.com/product/${id}`
 
   const { loading, error, data } = useFetch(url)
@@ -26,10 +25,26 @@ function ProductPage() {
 
 
   const handelButtonClick = () => {
-    if (cartProducts.some(pro => pro.item.id === product.id)) {
-      dispatch(removeFromCart(product))
+    const isAlreadypresent = cartProducts.find(pro => pro.id === product.id)
+    if (isAlreadypresent) {
+      (async () => {
+        console.log(isAlreadypresent.$id);
+        try {
+          await service.deleteItem(isAlreadypresent.$id)
+          dispatch(fetchCartProducts())
+        } catch (error) {
+          console.log("Appwrite service :: Removing Product from Cart :: error", error);
+        }
+      })()
     } else {
-      dispatch(addToCart({ item: product, quantity: 1 }))
+      (async () => {
+        try {
+          await service.createItem({ id, title, price })
+          dispatch(fetchCartProducts())
+        } catch (error) {
+          console.log("Appwrite service :: Adding Product to Cart :: error", error);
+        }
+      })()
     }
   }
 

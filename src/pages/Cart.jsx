@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CartCard from '../components/Cart/CartCard'
 import subTotal from '../utils/subTotal'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import service from '../appwrite/config'
+import { fetchCartProducts } from '../store/cartThunkSlice'
 
 function Cart() {
-  const cartProducts = useSelector(state => state.cart)
+  const cartProducts = useSelector(state => state.cartThunk.cartProducts)
   const currency = useSelector(state => state.currency)
   const sTotal = subTotal()
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch(fetchCartProducts)
+  // }, [cartProducts])
 
   return (
     <>
@@ -17,7 +24,7 @@ function Cart() {
             (<div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
               <div className="rounded-lg md:w-2/3">
                 {cartProducts.map(product => (
-                  <CartCard product={product} key={product.item.id} />
+                  <CartCard product={product} key={product.id} />
                 ))}
               </div>
 

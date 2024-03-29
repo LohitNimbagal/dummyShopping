@@ -8,7 +8,7 @@ function Hearder() {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const cartItems = useSelector(state => state.cart)
+  const cartItems = useSelector(state => state.cartThunk.cartProducts)
   const loggedin = useSelector(state => state.auth.status)
 
 

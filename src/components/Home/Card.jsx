@@ -1,20 +1,38 @@
-import React from 'react'
-import { addToCart, removeFromCart } from '../../store/cartSlice'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import service from '../../appwrite/config'
+import { fetchCartProducts } from '../../store/cartThunkSlice'
 
 function Card({ product }) {
 
   const dispatch = useDispatch()
-  const cartProducts = useSelector(state => state.cart)
   const navigate = useNavigate()
   const currency = useSelector(state => state.currency)
+  const cartProducts = useSelector(state => state.cartThunk.cartProducts)
+  const { id, title, price } = product
 
   const handelButtonClick = () => {
-    if (cartProducts.some(pro => pro.item.id === product.id)) {
-      dispatch(removeFromCart(product))
+    const isAlreadypresent = cartProducts.find(pro => pro.id === product.id)
+    if (isAlreadypresent) {
+      (async () => {
+        console.log(isAlreadypresent.$id);
+        try {
+          await service.deleteItem(isAlreadypresent.$id)
+          dispatch(fetchCartProducts())
+        } catch (error) {
+          console.log("Appwrite service :: Removing Product from Cart :: error", error);
+        }
+      })()
     } else {
-      dispatch(addToCart({ item: product, quantity: 1 }))
+      (async () => {
+        try {
+          await service.createItem({ id, title, price })
+          dispatch(fetchCartProducts())
+        } catch (error) {
+          console.log("Appwrite service :: Adding Product to Cart :: error", error);
+        }
+      })()
     }
   }
 
@@ -48,7 +66,7 @@ function Card({ product }) {
             </svg>
 
             <button className="text-sm">
-              {cartProducts.some(pro => pro.item.id === product.id) ? "Remove" : "Add"}
+              {cartProducts.some(pro => pro.id === product.id) ? "Remove" : "Add"}
             </button>
           </div>
 

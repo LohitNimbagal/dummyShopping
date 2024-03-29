@@ -46,8 +46,6 @@ function Home() {
       );
   
       setFilteredPro(filteredProducts);
-
-      
     }
   }, [data, priceRange, searchTerm])
 
