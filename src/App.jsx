@@ -29,9 +29,9 @@ function App() {
       .finally(() => setLoading(false));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(fetchCartProducts())
-  // }, [])
+  useEffect(() => {
+    dispatch(fetchCartProducts())
+  }, [])
 
   // const getCartItems = async () => {
   //   try {
