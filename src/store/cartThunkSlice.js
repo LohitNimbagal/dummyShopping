@@ -36,7 +36,7 @@ const CartThunkSlice = createSlice({
             })
 
             .addCase(fetchCartProducts.fulfilled, (state, action) => {
-                state = action.payload
+                return action.payload
             })
     }
 })

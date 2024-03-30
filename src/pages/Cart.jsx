@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import subTotal from '../utils/subTotal'
 import { useDispatch, useSelector } from 'react-redux'
-import service from '../appwrite/config'
-// import { fetchCartProducts } from '../store/cartThunkSlice'
 import { useNavigate } from 'react-router-dom'
 
 function Cart() {
-  const cartProducts = useSelector(state => state.cartThunk.cartProducts)
+  const cartProducts = useSelector(state => state.cartThunk)
   const currency = useSelector(state => state.currency)
   const sTotal = subTotal()
   const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(fetchCartProducts)
-  // }, [cartProducts])
   const navigate = useNavigate()
   const [quantity, setQuantity] = useState(1)
-
-  // useEffect(() => {
-  //     dispatch(updateQty({ id: product.id, quantity: quantity }))
-  // }, [quantity])
 
   const hadelCardClick = (product) => {
     console.log(product);
