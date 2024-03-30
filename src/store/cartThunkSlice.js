@@ -4,30 +4,39 @@ import service from '../appwrite/config'
 export const fetchCartProducts = createAsyncThunk('fetchCartProducts',
     async () => {
         const response = await service.listItems()
-        // console.log(response);
         return response.documents
+    }
+)
+
+export const addToCart = createAsyncThunk('addToCart',
+    async (product) => {
+        const { id, title, price } = product
+        const response = await service.createItem({ id, title, price })
+        return product
+    }
+)
+export const removeFromCart = createAsyncThunk('removeFromCart',
+    async (product) => {
+        const response = await service.deleteItem(product.$id)
+        return product
     }
 )
 
 const CartThunkSlice = createSlice({
     name: 'CartThunk',
-    initialState: {
-        isLoading: false,
-        error: false,
-        cartProducts: []
-    },
+    initialState: [],
     extraReducers: builder => {
         builder
-            .addCase(fetchCartProducts.pending, (state, action) => {
-                state.isLoading = true
+            .addCase(addToCart.fulfilled, (state, action) => {
+                state.push(action.payload)
             })
+
+            .addCase(removeFromCart.fulfilled, (state, action) => {
+                return state.filter(item => item.id !== action.payload.id)
+            })
+
             .addCase(fetchCartProducts.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.cartProducts = action.payload
-            })
-            .addCase(fetchCartProducts.rejected, (state, action) => {
-                console.log('Error', action.payload);
-                state.error = true
+                state = action.payload
             })
     }
 })
