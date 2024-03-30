@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useFetch from '../hooks/useFetch'
 import Card from '../components/ui/Card';
 import { Loading } from '../components/Loading';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart } from '../store/cartThunkSlice'
+import { addToCart, removeFromCart, fetchCartProducts } from '../store/cartThunkSlice'
 
 function Home() {
 
@@ -21,6 +21,10 @@ function Home() {
       dispatch(addToCart(product))
     }
   }
+
+  useEffect(() => {
+    dispatch(fetchCartProducts())
+  }, [])
 
   return (
     <>
