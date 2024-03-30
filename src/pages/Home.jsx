@@ -1,6 +1,6 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch'
-import Card from '../components/ui/Card.jsx'
+import Card from '../components/UI/Card.jsx'
 import { Loading } from '../components/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../store/cartThunkSlice'
