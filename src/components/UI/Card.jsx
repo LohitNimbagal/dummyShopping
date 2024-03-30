@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import service from '../../appwrite/config'
-// import { fetchCartProducts } from '../../store/cartThunkSlice'
-import { addToCart, removeFromCart } from '../../store/cartThunkSlice'
 
-function Card({ product, handleButtonClick, cartProducts }) {
+function Card ({ product, handleButtonClick, cartProducts }) {
 
   const navigate = useNavigate()
   const currency = useSelector(state => state.currency)
