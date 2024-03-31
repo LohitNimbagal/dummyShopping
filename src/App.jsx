@@ -1,14 +1,12 @@
-import { Outlet, useNavigate } from "react-router-dom"
+import authService from './appwrite/auth'
 import Hearder from "./components/Hearder"
 import Footer from "./components/Footer"
+import { Outlet } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { login, logout } from "./store/authSlice"
 import { Loading } from "./components/Loading"
-import authService from './appwrite/auth'
-import service from "./appwrite/config"
-import { addToCart, fetchCartProducts } from "./store/cartThunkSlice"
-// import { fetchCartProducts } from "./store/cartThunkSlice"
+import { login, logout } from "./store/authSlice"
+import { useDispatch } from "react-redux"
+import { fetchCartProducts } from "./store/cartThunkSlice"
 
 
 function App() {
@@ -23,22 +21,10 @@ function App() {
         if (userData) {
           dispatch(login({ userData }))
           dispatch(fetchCartProducts())
-          // getCartItems()
         } else dispatch(logout());
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false))
   }, [dispatch]);
-
-
-  // const getCartItems = async () => {
-  //   try {
-  //     const cartProducts = await service.listItems()
-  //     console.log(cartProducts);
-  //     // dispatch(addToCart(cartProducts.documents))
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   return !loading ? (
     <>

@@ -17,58 +17,62 @@ export class Service {
     }
 
     async createItem(product) {
-        const {
-            brand,
-            category,
-            description,
-            discountPercentage,
-            id,
-            images,
-            price,
-            rating,
-            stock,
-            thumbnail,
-            title
-        } = product
-        authService
-            .getCurrentUser()
-            .then(async (userData) => {
-                // if (userData)
-                //     console.log(userData.$id);
-                const response = await service.listItems()
+        return new Promise(async (resolve, reject) => {
+            try {
+                const {
+                    brand,
+                    category,
+                    description,
+                    discountPercentage,
+                    id,
+                    images,
+                    price,
+                    rating,
+                    stock,
+                    thumbnail,
+                    title
+                } = product;
+
+                const userData = await authService.getCurrentUser();
+
+                const response = await service.listItems();
                 const isAlreadyAdded = response.documents.some(item => item.id === id);
 
-                if (isAlreadyAdded) return
-                try {
-                    return await this.databases.createDocument(
-                        envVariables.appwriteDatabaseId,
-                        envVariables.appwriteCollectionId,
-                        ID.unique(),
-                        {
-                            brand,
-                            category,
-                            description,
-                            discountPercentage,
-                            id,
-                            images,
-                            price,
-                            rating,
-                            stock,
-                            thumbnail,
-                            title
-                        },
-                        [
-                            Permission.read(Role.user(userData.$id)),           // User can view this document
-                            Permission.update(Role.user(userData.$id)),         // Writers can update this document 
-                            Permission.delete(Role.user(userData.$id)),         // User 5c1f88b42259e can delete this document
-                        ]
-                    )
-                } catch (error) {
-                    console.log("Appwrite service :: createItem :: error", error);
+                if (isAlreadyAdded) {
+                    resolve(null); // Resolve with null if the item is already present
+                    return;
                 }
 
-            })
+                const addedProduct = await this.databases.createDocument(
+                    envVariables.appwriteDatabaseId,
+                    envVariables.appwriteCollectionId,
+                    ID.unique(),
+                    {
+                        brand,
+                        category,
+                        description,
+                        discountPercentage,
+                        id,
+                        images,
+                        price,
+                        rating,
+                        stock,
+                        thumbnail,
+                        title
+                    },
+                    [
+                        Permission.read(Role.user(userData.$id)),           // User can view this document
+                        Permission.update(Role.user(userData.$id)),         // Writers can update this document 
+                        Permission.delete(Role.user(userData.$id)),         // User 5c1f88b42259e can delete this document
+                    ]
+                );
 
+                resolve(addedProduct); // Resolve with the added product
+            } catch (error) {
+                console.log("Appwrite service :: createItem :: error", error);
+                reject(error); // Reject with the error
+            }
+        });
     }
 
     async deleteItem(id) {

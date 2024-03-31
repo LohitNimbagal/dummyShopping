@@ -8,7 +8,7 @@ function Card ({ product, handleButtonClick, cartProducts }) {
   const currency = useSelector(state => state.currency)
 
   const hadelCardClick = () => {
-    navigate(`/product/${product.id}`)
+    // navigate(`/product/${product.id}`)
   }
 
   return (

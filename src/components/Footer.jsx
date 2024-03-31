@@ -8,7 +8,7 @@ function Footer() {
                 <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
                     <div className="grid justify-center  lg:justify-between">
                         <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6">
-                            <span>Copy right © 2024 by GooShopping team </span>
+                            <span>Copyright © 2024 by GooShopping team </span>
 
                             <Link to="/about">About Us</Link>
                         </div>

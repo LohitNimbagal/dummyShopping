@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import subTotal from '../utils/subTotal'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { removeFromCart } from '../store/cartThunkSlice'
 
 function Cart() {
   const cartProducts = useSelector(state => state.cartThunk)
@@ -13,7 +14,7 @@ function Cart() {
 
   const hadelCardClick = (product) => {
     console.log(product);
-    navigate(`/product/${product.id}`)
+    // navigate(`/product/${product.id}`)
   }
 
   return (
@@ -44,7 +45,7 @@ function Cart() {
                           <p className="text-sm">
                             {Intl.NumberFormat(currency.countryCode.toUpperCase()).format(product.price * Math.floor(currency.countryRate))} {currency.countryCode.toUpperCase()}
                           </p>
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500 z-10"
                             onClick={() => {
                               dispatch(removeFromCart(product))
                             }}>
