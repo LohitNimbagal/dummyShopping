@@ -16,7 +16,20 @@ export class Service {
         this.storage = new Storage(this.client);
     }
 
-    async createItem({ id, title, price }) {
+    async createItem(product) {
+        const {
+            brand,
+            category,
+            description,
+            discountPercentage,
+            id,
+            images,
+            price,
+            rating,
+            stock,
+            thumbnail,
+            title
+        } = product
         authService
             .getCurrentUser()
             .then(async (userData) => {
@@ -32,9 +45,17 @@ export class Service {
                         envVariables.appwriteCollectionId,
                         ID.unique(),
                         {
+                            brand,
+                            category,
+                            description,
+                            discountPercentage,
                             id,
-                            title,
-                            price
+                            images,
+                            price,
+                            rating,
+                            stock,
+                            thumbnail,
+                            title
                         },
                         [
                             Permission.read(Role.user(userData.$id)),           // User can view this document

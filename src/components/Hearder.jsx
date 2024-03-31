@@ -11,7 +11,6 @@ function Hearder() {
   const cartItems = useSelector(state => state.cartThunk)
   const loggedin = useSelector(state => state.auth.status)
 
-
   const handleLogout = () => {
     authService.logout().then(() => {
       dispatch(logout())

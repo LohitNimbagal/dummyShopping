@@ -10,8 +10,8 @@ export const fetchCartProducts = createAsyncThunk('fetchCartProducts',
 
 export const addToCart = createAsyncThunk('addToCart',
     async (product) => {
-        const { id, title, price } = product
-        const response = await service.createItem({ id, title, price })
+        // console.log(product);
+        const response = await service.createItem(product)
         return product
     }
 )

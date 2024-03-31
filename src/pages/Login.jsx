@@ -86,7 +86,7 @@ function Login() {
                 // })}
               />
             </div>
-            <span className='text-xs' onClick={() => { navigator.clipboard.writeText("password123") }}>Test Password : <span className='hover:text-blue-700'>password123</span> </span>
+            <span className='text-xs' onClick={() => { navigator.clipboard.writeText("password123") }}>Test Password : <span className='hover:text-blue-700'>password</span> </span>
           </div>
 
 

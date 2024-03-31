@@ -26,8 +26,8 @@ function Cart() {
               <div className="rounded-lg md:w-2/3">
                 {cartProducts.map(product => (
                   // <CartCard product={product} key={product.id} />
-                  <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start" onClick={() => hadelCardClick(product)}>
-                    {/* <img src={product?.images[0]} alt={product.title} className='size-36 object-scale-down' /> */}
+                  <div key={product.title} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start" onClick={() => hadelCardClick(product)}>
+                    <img src={product?.images[0]} alt={product.title} className='size-36 object-scale-down' />
                     <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                       <div className="mt-5 sm:mt-0">
                         <h2 className="text-lg font-bold text-gray-900">{product.title}</h2>
