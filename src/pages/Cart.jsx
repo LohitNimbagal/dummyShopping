@@ -13,7 +13,7 @@ function Cart() {
   const [quantity, setQuantity] = useState(1)
 
   const hadelCardClick = (product) => {
-    console.log(product);
+    // console.log(product);
     // navigate(`/product/${product.id}`)
   }
 
@@ -36,11 +36,11 @@ function Cart() {
                         {/* <p className="mt-1 text-xs text-gray-700">{product.discountPercentage} % off /-</p> */}
                       </div>
                       <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                        <div className="flex items-center border-gray-100">
+                        {/* <div className="flex items-center border-gray-100">
                           <span className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50" onClick={() => setQuantity(preValue => preValue <= 1 ? preValue : preValue - 1)}> - </span>
                           <input className="h-8 w-8 border bg-white text-center text-xs outline-none" type="text" value={quantity} readOnly />
                           <span className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50" onClick={() => setQuantity(preValue => preValue >= 5 ? preValue : preValue + 1)}> + </span>
-                        </div>
+                        </div> */}
                         <div className="flex items-center space-x-4">
                           <p className="text-sm">
                             {Intl.NumberFormat(currency.countryCode.toUpperCase()).format(product.price * Math.floor(currency.countryRate))} {currency.countryCode.toUpperCase()}

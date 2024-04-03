@@ -16,6 +16,7 @@ function Login() {
       const loggedInUserData = await authService.login({ email: e.target.email.value, password: e.target.password.value })
       if (loggedInUserData) {
         const userData = await authService.getCurrentUser()
+        console.log(userData);
         if (userData) {
           dispatch(authLogin(userData))
           navigate("/")
